@@ -138,43 +138,22 @@ export function Tree(arr) {
 
   const inOrder = (callback, subroot = root) => {
     if (subroot === null) return;
-
-    if (subroot.left !== null) {
-      inOrder(callback, subroot.left);
-    }
-
+    inOrder(callback, subroot.left);
     callback(subroot);
-
-    if (subroot.right !== null) {
-      inOrder(callback, subroot.right);
-    }
+    inOrder(callback, subroot.right);
   };
 
   const preOrder = (callback, subroot = root) => {
     if (subroot === null) return;
-
     callback(subroot);
-
-    if (subroot.left !== null) {
-      preOrder(callback, subroot.left);
-    }
-
-    if (subroot.right !== null) {
-      preOrder(callback, subroot.right);
-    }
+    preOrder(callback, subroot.left);
+    preOrder(callback, subroot.right);
   };
 
   const postOrder = (callback, subroot = root) => {
     if (subroot === null) return;
-
-    if (subroot.left !== null) {
-      postOrder(callback, subroot.left);
-    }
-
-    if (subroot.right !== null) {
-      postOrder(callback, subroot.right);
-    }
-
+    postOrder(callback, subroot.left);
+    postOrder(callback, subroot.right);
     callback(subroot);
   };
 
