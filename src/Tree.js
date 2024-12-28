@@ -152,18 +152,17 @@ export function Tree(arr) {
     // go back to grandparent
     // use call back on queue.pop(node)
 
-
-    while (queue.length > 0) {
-      while (currentNode.left !== null) {
-        currentNode = currentNode.left;
-        queue.push(currentNode)
-      }
-      if 
-      callback(currentNode);
-      if (currentNode.left !== null) queue.push(currentNode.left);
-      if (currentNode.right !== null) queue.push(currentNode.right);
-      queue.shift();
-    }
+    // while (queue.length > 0) {
+    //   while (currentNode.left !== null) {
+    //     currentNode = currentNode.left;
+    //     queue.push(currentNode)
+    //   }
+    //   if
+    //   callback(currentNode);
+    //   if (currentNode.left !== null) queue.push(currentNode.left);
+    //   if (currentNode.right !== null) queue.push(currentNode.right);
+    //   queue.shift();
+    // }
   };
 
   const preOrder = (callback) => {};
