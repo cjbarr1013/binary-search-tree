@@ -157,13 +157,62 @@ export function Tree(arr) {
     callback(subroot);
   };
 
-  const height = (node) => {};
+  const height = (node) => {
+    if (node === null) return 0;
 
-  const depth = (node) => {};
+    let height = 0;
+    let queue = [];
+    queue.push(node);
+    queue.push(null);
+    while (queue.length > 0) {
+      let currentNode = queue.shift();
+      if (currentNode === null) {
+        height++;
+        if (queue.length > 0) {
+          queue.push(null);
+        }
+      } else {
+        if (currentNode.left) queue.push(currentNode.left);
+        if (currentNode.right) queue.push(currentNode.right);
+      }
+    }
+    return height - 1;
+  };
 
-  const isBalanced = () => {};
+  const depth = (node) => {
+    let currentNode = root;
+    let depthValue = 0;
+    while (currentNode !== node) {
+      if (node.value < currentNode.value) {
+        currentNode = currentNode.left;
+      } else {
+        currentNode = currentNode.right;
+      }
+      depthValue++;
+    }
+    return depthValue;
+  };
 
-  const rebalance = () => {};
+  const isBalanced = () => {
+    let heightLeft = height(root.left);
+    let heightRight = height(root.right);
+
+    if (Math.abs(heightLeft - heightRight) > 1) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const rebalance = () => {
+    if (!isBalanced()) {
+      let newArray = [];
+      levelOrder((node) => {
+        newArray.push(node.value);
+      });
+      root = buildTree(sortArr(newArray));
+    }
+  };
 
   return {
     printTree,
@@ -174,5 +223,7 @@ export function Tree(arr) {
     inOrder,
     preOrder,
     postOrder,
+    isBalanced,
+    rebalance,
   };
 }
