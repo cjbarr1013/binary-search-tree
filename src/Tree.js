@@ -136,38 +136,47 @@ export function Tree(arr) {
     }
   };
 
-  const inOrder = (callback) => {
-    if (root === null) return;
+  const inOrder = (callback, subroot = root) => {
+    if (subroot === null) return;
 
-    let queue = [];
-    let currentNode = root;
-    queue.push(currentNode);
+    if (subroot.left !== null) {
+      inOrder(callback, subroot.left);
+    }
 
-    // traverse down entire left side of tree, storing each node in a stack (array)
-    // use call back on queue.pop(node)
-    // use call back on queue.pop(node) for parent
-    // add right node of parent to queue, and traverse down entire left side of tree
-    // check for left node
-    // use call back on queue.pop(node)
-    // go back to grandparent
-    // use call back on queue.pop(node)
+    callback(subroot);
 
-    // while (queue.length > 0) {
-    //   while (currentNode.left !== null) {
-    //     currentNode = currentNode.left;
-    //     queue.push(currentNode)
-    //   }
-    //   if
-    //   callback(currentNode);
-    //   if (currentNode.left !== null) queue.push(currentNode.left);
-    //   if (currentNode.right !== null) queue.push(currentNode.right);
-    //   queue.shift();
-    // }
+    if (subroot.right !== null) {
+      inOrder(callback, subroot.right);
+    }
   };
 
-  const preOrder = (callback) => {};
+  const preOrder = (callback, subroot = root) => {
+    if (subroot === null) return;
 
-  const postOrder = (callback) => {};
+    callback(subroot);
+
+    if (subroot.left !== null) {
+      preOrder(callback, subroot.left);
+    }
+
+    if (subroot.right !== null) {
+      preOrder(callback, subroot.right);
+    }
+  };
+
+  const postOrder = (callback, subroot = root) => {
+    if (subroot === null) return;
+
+    if (subroot.left !== null) {
+      postOrder(callback, subroot.left);
+    }
+
+    if (subroot.right !== null) {
+      postOrder(callback, subroot.right);
+    }
+
+    callback(subroot);
+  };
 
   const height = (node) => {};
 

@@ -34,3 +34,12 @@ console.log(tree.find(67));
 
 printSeparator('Level Order Traversal');
 tree.levelOrder(logNodeValue);
+
+printSeparator('In Order Traversal');
+tree.inOrder(logNodeValue);
+
+printSeparator('Pre Order Traversal');
+tree.preOrder(logNodeValue);
+
+printSeparator('Post Order Traversal');
+tree.postOrder(logNodeValue);
